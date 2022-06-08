@@ -245,7 +245,7 @@ export default function Chat() {
                 <div className="my-editing-area" onClick={closeEmojiBox} />
               </ReactQuill>
             </div>
-            <Picker onEmojiClick={onEmojiClick} preload />
+            <Picker onEmojiClick={onEmojiClick} />
             <div className="send">
               <div className="emogiFileWrapper">
                 <div className="fileWrapper">
