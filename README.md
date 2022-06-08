@@ -26,6 +26,7 @@ Lets Chat is a chatting application that allows you to chat with multiple people
 
 
 ## Screenshots
+![image](https://user-images.githubusercontent.com/74523865/172621237-c24fc083-3f6c-42f4-973d-c194c234b14c.png)
 
 
 ## Installation
