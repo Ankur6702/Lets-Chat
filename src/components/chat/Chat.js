@@ -2,20 +2,14 @@ import Message from "../message/Message";
 import { io } from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
 import ReactQuill from 'react-quill';
-import "quill-mention";
 import Picker from 'emoji-picker-react';
 import { BsEmojiSmile } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { HiOutlineAtSymbol } from "react-icons/hi";
+import "quill-mention";
 import 'react-quill/dist/quill.snow.css';
 import "./chat.css";
-
-
-// CSS
-// Bring curson to the last after using @ and emogies
-// Link preview
-
 
 const socket = io("https://chat-serve.herokuapp.com/");
 
@@ -30,6 +24,7 @@ export default function Chat() {
   let [value, setValue] = useState("");
   const [chosenEmoji, setChosenEmoji] = useState(null);
 
+// ======================================= Quills editor Modules =========================================
   const modules = {
     toolbar: [
       ['bold', 'italic', 'strike'],
@@ -67,6 +62,48 @@ export default function Chat() {
     }
   }
 
+  // ======================================================================================================
+
+
+  // ========================================= Quills editor Text =====================================
+  const handleValue = (value) => {
+
+    value = value.replace(/<p>/g, "");
+    value = value.replace(/<\/p>/g, "").trim();
+
+    if (value.includes("<br>") && !value.includes("<ol") && !value.includes("<ul") && !value.includes("<blockquote")) {
+      value = value.replace(/<br>/g, "");
+      if (value !== "") {
+        socket.emit("send", value);
+        setValue("");
+      }
+    } else {
+      setValue(value);
+    }
+
+    if (value === "<br>") {
+      setValue("");
+    }
+  };
+
+  const handleMessages = (e) => {
+    e.preventDefault();
+    value = value.replace(/<p>/g, "");
+    value = value.replace(/<\/p>/g, "").trim();
+    if (value !== "") {
+      let message = value;
+      socket.emit("send", message);
+      setValue("");
+    }
+    let emojiPicker = document.querySelector("aside.emoji-picker-react");
+    emojiPicker.style.display = "none";
+  };
+
+  // ============================================================================================
+
+
+  // ========================================= Extra Features ===================================
+
   const handleAtClick = () => {
     setValue(value.concat(" @"));
   }
@@ -77,14 +114,6 @@ export default function Chat() {
       allUsers = [...new Set(allUsers)];
     }
   }
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages]);
 
   const handleEmojiShow = () => {
     let emojiPicker = document.querySelector("aside.emoji-picker-react");
@@ -128,40 +157,23 @@ export default function Chat() {
     };
   };
 
+  // ============================================================================================
 
-  const handleValue = (value) => {
 
-    value = value.replace(/<p>/g, "");
-    value = value.replace(/<\/p>/g, "").trim();
+  // ============= To scroll till bottom whenever a new message is added ========================
 
-    if (value.includes("<br>") && !value.includes("<ol") && !value.includes("<ul") && !value.includes("<blockquote")) {
-      value = value.replace(/<br>/g, "");
-      if (value !== "") {
-        socket.emit("send", value);
-        setValue("");
-      }
-    } else {
-      console.log(value);
-      setValue(value);
-    }
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
-    if (value === "<br>") {
-      setValue("");
-    }
-  };
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
 
-  const handleMessages = (e) => {
-    e.preventDefault();
-    value = value.replace(/<p>/g, "");
-    value = value.replace(/<\/p>/g, "").trim();
-    if (value !== "") {
-      let message = value;
-      socket.emit("send", message);
-      setValue("");
-    }
-    let emojiPicker = document.querySelector("aside.emoji-picker-react");
-    emojiPicker.style.display = "none";
-  };
+  // ============================================================================================
+
+
+  // =================================== socket.io ==============================================
 
   useEffect(() => {
     let name = null;
@@ -201,6 +213,8 @@ export default function Chat() {
       ]);
     });
   }, []);
+  
+  // ============================================================================================
 
 
   return (
@@ -231,7 +245,7 @@ export default function Chat() {
                 <div className="my-editing-area" onClick={closeEmojiBox} />
               </ReactQuill>
             </div>
-            <Picker onEmojiClick={onEmojiClick} />
+            <Picker onEmojiClick={onEmojiClick} preload />
             <div className="send">
               <div className="emogiFileWrapper">
                 <div className="fileWrapper">
