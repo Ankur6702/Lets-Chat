@@ -37,7 +37,7 @@ Clone the repository
 
 
 ```bash
-  git clone 
+  git clone https://github.com/Ankur6702/Lets-Chat.git
 ```
 
 Install Node modules in the cloned folder
