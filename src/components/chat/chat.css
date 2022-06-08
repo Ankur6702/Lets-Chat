@@ -145,12 +145,12 @@
 
 aside.emoji-picker-react {
     box-shadow: none;
-    position: relative;
     z-index: 1;
-    position: absolute;
+    position: absolute !important;
     bottom: 110px;
     left: 230px;
     display: none;
+    box-shadow: none !important;
 }
 
 .emojiWrapper {
