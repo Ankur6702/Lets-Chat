@@ -1,0 +1,262 @@
+.messenger {
+    height: calc(100vh - 50px);
+    display:flex;
+}
+
+.box {
+    flex: 1.5;
+}
+
+.chatBox {
+    flex: 5.5;
+}
+
+.chatWrapper {
+    height: 100%;
+    background-color: #ffffff;
+    border: 16px solid #313030;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    background-color: #313030;
+}
+
+.chatHeaderTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.chatBoxTop {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
+    overflow-x: hidden;
+}
+
+#file {
+    display: none;
+}
+
+.chatBoxBottom {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #313030;
+}
+
+.formatter {
+    width: 100%;
+}
+
+.ql-snow .ql-stroke {
+    stroke: #c7c1c1;
+}
+.ql-stroke ql-thin {
+    stroke: #c7c1c1;
+}
+
+.ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+    fill: #c7c1c1;
+}
+
+.ql-editor.ql-blank::before {
+    color: #c7c1c1;
+}
+
+.ql-editor.ql-blank {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+}
+
+.ql-editor.ql-blank:focus {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+}
+
+.my-editing-area {
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+#quill-mention-list {
+    width: 200px;
+    max-width: 250px;
+    max-height: 170px;
+    background-color: #000000;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    overflow-y: auto;
+}
+
+#quill-mention-list li {
+    text-decoration: none;
+    list-style: none;
+}
+
+#quill-mention-list li:hover {
+    background-color: #313030;
+    cursor: pointer;
+}
+
+.ql-editor {
+    min-height: 100%;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.ql-container.ql-snow {
+    border: none;
+}
+
+.ql-toolbar.ql-snow {
+    border: none;
+}
+
+.chatForm {
+    width: 100%;
+    display: flex;
+}
+
+.chatMessageInput {
+    width: 85%;
+    padding: 10px;
+    background-color: #313030;
+    color: #ffffff;
+}
+
+aside.emoji-picker-react {
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+    position: absolute;
+    bottom: 110px;
+    left: 230px;
+    display: none;
+}
+
+.emojiWrapper {
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.fileWrapper {
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.mentionIcon {
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.userMention {
+    display: block;
+    /* visibility: hidden; */
+    position: absolute;
+    left: 0;
+    box-shadow: none;
+    width: 150px;
+    background-color: #ffffff;
+    color: #000000;
+    overflow: hidden;
+}
+
+.mention {
+    display: inline;
+    margin-left: 0;
+    color: blue;
+}
+
+.userMention li {
+    display: block;
+}
+
+.emojiWrapper:hover, .fileWrapper:hover, .mention:hover {
+    color: #c7c1c1;
+}
+
+.send {
+    display: flex;
+    flex-direction: row;
+    padding: 0.2rem;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.emogiFileWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 10px;
+}
+
+.formWrapper {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: flex-end;
+}
+
+.chatSendButton {
+    width: 45px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(32, 155, 108);
+    color: #ffffff;
+    margin-right: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1100px) {
+    .box {
+        flex: 0;
+    }
+
+    .chatBox {
+        flex: 1;
+    }
+
+    aside.emoji-picker-react {
+        left: 30px;
+        bottom: 110px;
+    }
+}
+
+
+
